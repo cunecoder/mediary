@@ -1,0 +1,27 @@
+<!-- events.html 
+     Authors: David Marin & Silas Curtis
+     The html frontend for the events page in Mediary
+     Last Updated: 4/27/2025
+     Description: This page displays all of the events that are going on. I probably won't really use this page,
+                  but for now I am testing out what it would look like. I might implement this page to be specific
+                  for each user, so only the specific user's events show up.
+    -->
+
+<!-- Event List -->
+<div id="events-list">
+    <ul>
+        {% for event in events %}
+            <li id="event-{{ event.id }}">
+                <div class="event-container">
+                    <strong>{{ event.title }}</strong>: {{ event.description }}
+                    <small style="color: gray">({{ event.time }})</small>
+                    
+                    <!-- Link to the Event Detail Page -->
+                    <a href="{% url 'mediary:event_detail' event.id %}" class="event-link">View Event</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>No events yet!</li>
+        {% endfor %}
+    </ul>
+</div>
