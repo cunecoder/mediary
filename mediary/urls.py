@@ -15,7 +15,10 @@ app_name = 'mediary'
 urlpatterns = [
     # Main page
     path('', views.home, name='home'),
+    # Display all the events
+    path('events/', views.event_list, name='event_list'),
     # Create event
-    path('create/event', views.create_event, name='create_event')
-    path('event/<int:event_id>', views.)
+    path('events/create/', views.event_create, name='event_create'),
+    # Display a specific event based on it's id
+    path('events/<int:event_id>', views.event_detail, name="event_detail")
     ]

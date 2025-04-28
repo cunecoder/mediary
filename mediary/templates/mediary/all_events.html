@@ -1,4 +1,4 @@
-<!-- events.html 
+<!-- all_events.html 
      Authors: David Marin & Silas Curtis
      The html frontend for the events page in Mediary
      Last Updated: 4/27/2025
@@ -6,7 +6,9 @@
                   but for now I am testing out what it would look like. I might implement this page to be specific
                   for each user, so only the specific user's events show up.
     -->
+{% extends "mediary/base.html" %}
 
+{% block content %}
 <!-- Event List -->
 <div id="events-list">
     <ul>
@@ -25,3 +27,4 @@
         {% endfor %}
     </ul>
 </div>
+{% endblock content %}

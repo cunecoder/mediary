@@ -1,0 +1,18 @@
+<!-- event_create.html 
+     David Marin & Silas Curtis
+     The html frontend for creating an event in Mediary
+     4/22/2025
+    -->
+
+<h1>
+    Create event page
+</h1>
+
+<div>
+    <!-- Event Form -->
+    <form id="event-form" method="POST" action="{% url 'mediary:event_create' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Create Event</button>
+    </form>
+</div>

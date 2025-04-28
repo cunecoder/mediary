@@ -25,10 +25,10 @@ class Event(models.Model):
         time        (DATETIMEFIELD LATER: CharField now)
 
         # Will implement user later ***user (ForeignKey): The user who created the chirp.        
-        # might not need this, might add later (from chirper) created_at (DateTimeField): The timestamp when the event was created.
+        might not need this, might add later (from chirper) created_at (DateTimeField): The timestamp when the event was created.
     """
-    # copied from chirper, will use later maybe: user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
-    # might not need, from chirper, might add later: created_at = models.DateTimeField(auto_now_add=True)
+    #, will use later maybe: user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
@@ -42,7 +42,10 @@ class Event(models.Model):
             str: A string representing the event.
         """
         return (
-            f"""\"{self.title}\"
-            Location: {self.location}
-            Description: {self.description}"""
+            f"""
+            Title:     \"{self.title}\"
+            Location:    {self.location}
+            Description: {self.description}
+            Time:        {self.time}
+        """
         )
