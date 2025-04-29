@@ -7,7 +7,7 @@
 
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="display-4 text-white">All Events</h1>
+        <h1 class="display-4 text-black">All Events</h1>
         <a href="{% url 'mediary:event_create' %}" class="btn btn-primary btn-lg">Create Event</a>
     </div>
 
@@ -46,17 +46,17 @@
 <style>
     /* Gradient Background */
     body {
-        background: linear-gradient(90deg, #f8c954, #f878cd);
-        min-height: 100vh;
-        margin: 0; /* Remove default browser margins */
-    }
+    background: linear-gradient(180deg, rgba(248, 121, 205, 0.6), rgba(248, 201, 84, 0.6)); /* Reduced opacity with rgba */
+    min-height: 100vh;
+    margin: 0; /* Remove default browser margins */
+}
     /* Card Header Gradient */
     .card-header {
         background: linear-gradient(90deg, #f8c954, #f878cd);
     }
     /* Card Styling */
     .card {
-        background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent for readability */
+        background-color: rgba(255, 255, 255, 0.3); /* Reduced opacity from 0.75 to 0.6 */
     }
     .card-body {
         padding: 1.5rem; /* Comfortable padding */

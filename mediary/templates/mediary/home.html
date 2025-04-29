@@ -1,39 +1,62 @@
-<!-- home.html 
-     David Marin & Silas Curtis
-     The html frontend for the homepage in Mediary
-     4/22/2025
-    -->
-<!-- Person notes for the Bootstrap stuff
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    Use this link above right below the title thingy
-    ex:
-    </title>
-    (link href -link)
+{% extends "mediary/base.html" %}
+{% load static %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    Use this link (paste the whole line) right at the end of the </body>
-    ex:
-    (script link)
-    </body>
-    -->
+{% block content %}
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mediary</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-</head>
-<body class="layout">
-    <h1 class="display-2">
-        Mediary - Make planning simple
-    </h1>
+<div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 bg-light bg-opacity-75 text-center">
+        <div class="card-header bg-primary text-white">
+            <h1 class="display-4 mb-0">Mediary - Make Planning Simple</h1>
+        </div>
+        <div class="card-body p-5">
+            <p class="lead mb-4">Plan and manage your events with ease.</p>
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center">
+                <a href="{% url 'mediary:event_create' %}" class="btn btn-primary btn-lg">Create Event</a>
+                <a href="{% url 'mediary:event_list' %}" class="btn btn-secondary btn-lg">View All Events</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- <button type="button" class="btn btn-primary btn-lg"> -->
-<a href="{% url 'mediary:event_create' %}" class="btn btn-primary btn-lg">Create event</a>
-<!-- </button> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-</body>
-</html>
-   
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+<style>
+    /* Gradient Background */
+    body {
+        background: linear-gradient(90deg, #f8c954, #f878cd);
+        min-height: 100vh;
+        margin: 0; /* Remove default browser margins */
+    }
+    /* Card Header Gradient */
+    .card-header {
+        background: linear-gradient(90deg, #f8c954, #f878cd);
+    }
+    /* Card Styling */
+    .card {
+        background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent for readability */
+        max-width: 600px; /* Limit card width for better aesthetics */
+        width: 100%;
+    }
+    /* Button Hover Effects */
+    .btn-primary:hover {
+        background-color: #005f99; /* Darker blue for hover */
+        transform: translateY(-2px); /* Subtle lift effect */
+        transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker gray for hover */
+        transform: translateY(-2px); /* Subtle lift effect */
+        transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    /* Responsive Button Layout */
+    @media (max-width: 767px) {
+        .d-flex {
+            flex-direction: column !important; /* Stack buttons vertically on mobile */
+        }
+    }
+</style>
+{% endblock content %}
