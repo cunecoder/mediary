@@ -29,9 +29,24 @@
                             <strong>Created:</strong> {{ event.created_at|date:"F j, Y, g:i a" }}
                         </li>
                     </ul>
-                    <div class="d-flex justify-content-center mt-4">
-                        <a href="{% url 'mediary:home' %}" class="btn btn-secondary btn-lg">Back to Home</a>
+                    <div class="d-flex justify-content-center mt-2">
+                        <a href="{% url 'mediary:home' %}" class="btn btn-secondary btn-lg me-2">Back to Home</a>
+
+                        {% comment %} Copy URL button {% endcomment %}
+                        <button onclick="copyURL()" class="btn btn-secondary btn-lg">Copy URL</button>
                     </div>
+
+                    <script>
+                    function copyURL() {
+                        navigator.clipboard.writeText(window.location.href)
+                            .then(() => {
+                                alert('URL copied to clipboard!');
+                            })
+                            .catch(err => {
+                                console.error('Failed to copy: ', err);
+                            });
+                    }
+                    </script>
                 </div>
             </div>
         </div>
