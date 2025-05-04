@@ -20,5 +20,7 @@ urlpatterns = [
     # Create event
     path('events/create/', views.event_create, name='event_create'),
     # Display a specific event based on it's id
-    path('events/<int:event_id>', views.event_detail, name="event_detail")
+    path('events/<int:event_id>', views.event_detail, name="event_detail"),
+    # About us page
+    path('aboutus/', views.about_us, name='about_us')
     ]

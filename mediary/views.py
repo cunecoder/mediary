@@ -66,3 +66,15 @@ def event_list(request):
     form = EventForm()
     context = {'events': events, 'form': form}  # Changed 'events_list' to 'events'
     return render(request, 'mediary/all_events.html', context)
+
+def about_us(request):
+    """
+    Render the 'About Us' page with info on Mediary.
+    
+    Args:
+        request: The HTTP request object.
+    
+    Returns:
+        HTTPResponse: The rendered page with all events.
+    """
+    return render(request, 'mediary/about_us.html')
