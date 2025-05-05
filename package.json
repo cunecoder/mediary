@@ -1,0 +1,14 @@
+{
+  "name": "mediary",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "parcel build mediary/static/src/index.html --dist-dir mediary/static/dist --public-url /static/dist/",
+    "watch": "parcel watch mediary/static/src/index.html --dist-dir mediary/static/dist --public-url /static/dist/"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "@geoapify/geocoder-autocomplete": "^2.0.3"
+  }
+}
