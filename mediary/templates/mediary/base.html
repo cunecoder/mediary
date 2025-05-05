@@ -11,16 +11,16 @@
     {% load static %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="margin-left: 180px; background: linear-gradient(90deg, #f8c954, #f878cd)">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark" style="margin-left: 0px; background: linear-gradient(90deg, #f8c954, #f878cd)">
         <div class="container-fluid">
             <!-- Top-Left Logo as Home Button -->
-            <a href="{% url 'mediary:home' %}">
-                <img src="{% static 'images/image7.png' %}" alt="Mediary Logo" class="logo" style="width: 120px; height: auto; margin-left: -170px;">
+            <a class="navbar-brand" href="{% url 'mediary:home' %}" style="margin-right: 2rem;">
+                <img src="{% static 'images/image7.png' %}" alt="Mediary Logo" style="width: 120px; height: auto;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse ms-5" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'mediary:home' %}">Home</a>
