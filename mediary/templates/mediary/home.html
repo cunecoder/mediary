@@ -4,10 +4,9 @@
 {% block content %}
 <!-- Main image/logo, text, and navigation buttons -->
 <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <img src="{% static 'images/image8.png' %}" alt="Mediary Logo" class="logo mb-4" style="width: 190px; height: auto; margin-top: -80px;">
     <h1 class="display-1 text-black mb-4 fw-semibold text-center">Simplify the<br>Way you Plan</h1>
-    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">
-        <img src="{% static 'images/image8.png' %}" alt="Mediary Logo" class="logo mb-4" style="width: 190px; height: auto;">
-        
+    <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">        
         <!-- Navigation buttons -->
         <a href="{% url 'mediary:event_create' %}" class="btn btn-primary btn-lg">Create Event</a>
         <a href="{% url 'mediary:event_list' %}" class="btn btn-dark btn-lg">View All Events</a>
