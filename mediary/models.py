@@ -1,13 +1,6 @@
-# models.py
-# Author: David Marin & Silas Curtis
-# Last Updated: 4/27/2025
-# Description: This file contains the models we use for the Mediary website's database.
-# * Includes: Events, Users
-
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 from django.db import models
-
-# Create your models here.
+from django.conf import settings
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
@@ -20,14 +13,13 @@ class Event(models.Model):
 
     Attributes:
         title       (CharField): Title of the event.
-        location    (CharField now, maybe another type later):
-        description (CharField)
-        time        (DATETIMEFIELD LATER: CharField now)
-
-        # Will implement user later ***user (ForeignKey): The user who created the chirp.        
-        might not need this, might add later (from chirper) created_at (DateTimeField): The timestamp when the event was created.
+        location    (CharField): Event location.
+        description (CharField): Event description.
+        time        (DateTimeField): Event date and time.
+        user        (ForeignKey): The user who created the event.
+        created_at  (DateTimeField): Timestamp when the event was created.
     """
-    #, will use later maybe: user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
@@ -47,5 +39,6 @@ class Event(models.Model):
             Location:    {self.location}
             Description: {self.description}
             Time:        {self.time}
+            Created by:  {self.user.email if self.user else 'Anonymous'}
         """
         )

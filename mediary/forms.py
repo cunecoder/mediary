@@ -1,12 +1,6 @@
-# mediary/forms.py
-# Author: David Marin & Silas Curtis
-# Last Updated: 4/27/2025
-# Description: This file contains the forms we use for the Mediary website's database.
-# * Includes: form for creating an event
-
 from django import forms
-from .models import Event
-
+from .models import Event, User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -21,7 +15,7 @@ class EventForm(forms.ModelForm):
             'location': forms.TextInput(attrs={
                 'placeholder': "Enter an address...",
                 'class': 'form-control',
-                'id': 'location-input'  # Add a unique ID for JavaScript
+                'id': 'location-input'
             }),
             'description': forms.Textarea(attrs={
                 'placeholder': "Tell us about it!",
@@ -34,3 +28,29 @@ class EventForm(forms.ModelForm):
                 'class': 'form-control',
             })
         }
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['email', 'password1', 'password2']
+        widgets = {
+            'email': forms.EmailInput(attrs={
+                'placeholder': "Enter your email...",
+                'class': 'form-control',
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirm Password'})
+
+class CustomAuthenticationForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']  # 'username' is actually 'email' due to USERNAME_FIELD
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email'})
+        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
