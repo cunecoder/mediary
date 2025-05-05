@@ -22,6 +22,17 @@ def event_create(request):
     else:
         form = EventForm()
         return render(request, 'mediary/event_create.html', {"form": form})
+    
+def delete_event(request, event_id):
+    """
+    Render the form for deleting an event.
+    """
+    
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == "POST":
+        event.delete()
+        return redirect('mediary:event_list')
+    return redirect('mediary:event_detail', event_id=event.id)
 
 def event_detail(request, event_id):
     """
