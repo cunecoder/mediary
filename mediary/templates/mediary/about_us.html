@@ -8,12 +8,39 @@
         }
     </style>
 </head>
+
 <style>
     body {
         background-image: url("{% static 'images/mediaryfire.png' %}");
         background-size: 25%;
         background-repeat: no-repeat;
-        background-position: 60% -50%;
+        background-position: 80% -50%;
+    }
+    .text-section {
+        position: absolute;
+        left: 110px;
+        top: 20px;
+        color: #fff;
+        max-width: 50%;
+    }
+    .text-section h1 {
+        font-size: 4em;
+        font-weight: bold;
+        margin: 0 0 20px 0;
+        line-height: 1;
+    }
+    .text-section p {
+        font-size: 1.499999999999999999999999999999999999em;
+        line-height: 1.5;
+        justify-content: center;
+        align-items: center;
     }
 </style>
+<div class="text-section">
+    <br><br><br><br>
+    <h1>WHAT IS<br>MEDIARY?</h1>
+    <p>
+        Planning a family get together or any group event can quickly turn into a chaotic mess. With endless back-and-forth texts, forgotten details, and people not responding, it’s easy to feel overwhelmed. Mediary is an online platform that simplifies event planning by allowing you to create and plan, share a link with your group, have you add their preferences and enjoy a fully planned event. No more confusing messages or missed information—Mediary takes care of everything, from the date and location to who’s bringing what. Sign up to make your next event stress-free and organized!
+    </p>
+</div>
 {% endblock content %}
