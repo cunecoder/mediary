@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'mediary/home.html')
 
-@login_required
+
 def event_create(request):
     if request.method == "POST":
         form = EventForm(request.POST)
