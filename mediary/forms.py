@@ -9,21 +9,9 @@ from .models import Event
 
 
 class EventForm(forms.ModelForm):
-    """
-    Form for creating an event
-
-    Attributes:
-        Meta: Metadata for the form
-    """
     class Meta:
         model = Event
         fields = ['title', 'location', 'description', 'time']
-        # widgets = {
-        #     'title': forms.TextInput(attrs={'placeholder': "Event Title..."}),
-        #     'location': forms.TextInput(attrs={'placeholder': "Location..."}),
-        #     'description': forms.Textarea(attrs={'placeholder': "Tell us about it!", 'rows': 3, 'cols': 30}),
-        #     'time': forms.DateTimeInput(attrs={'type': 'datetime-local'})
-        # }
         widgets = {
             'title': forms.TextInput(attrs={
                 'placeholder': "Event Title...",
@@ -31,8 +19,9 @@ class EventForm(forms.ModelForm):
                 'id': 'event-title-input'
             }),
             'location': forms.TextInput(attrs={
-                'placeholder': "Location...",
+                'placeholder': "Enter an address...",
                 'class': 'form-control',
+                'id': 'location-input'  # Add a unique ID for JavaScript
             }),
             'description': forms.Textarea(attrs={
                 'placeholder': "Tell us about it!",

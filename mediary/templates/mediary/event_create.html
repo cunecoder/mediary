@@ -1,3 +1,5 @@
+
+
 {% extends "mediary/base.html" %}
 {% load static %}
 {% block content %}
@@ -9,10 +11,8 @@
 
 <div class="container mt-5 position-relative">
     <div class="background-images">
-
         <img src="{% static 'images/image7.png' %}" class="image" alt="Decorative Image 1">
     </div>
-    <!-- SVG Background -->
     <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" class="background-svg">
         <style>
             .path-0 {
@@ -56,7 +56,6 @@
         <path d="M 0,500 L 0,218 C 61.33673695893451,190.78100875570354 122.67347391786902,163.56201751140708 184,177 C 245.32652608213098,190.43798248859292 306.64284128745834,244.5329387100752 348,246 C 389.35715871254166,247.4670612899248 410.7551609322975,196.30622764829204 457,193 C 503.2448390677025,189.69377235170796 574.3365149833518,234.24215069675668 630,237 C 685.6634850166482,239.75784930324332 725.8987791342953,200.7251695646812 774,181 C 822.1012208657047,161.2748304353188 878.0683684794672,160.85717104451845 935,177 C 991.9316315205328,193.14282895548155 1049.827746947836,225.846146257245 1105,229 C 1160.172253052164,232.153853742755 1212.6206437291896,205.75824392650142 1268,199 C 1323.3793562708104,192.24175607349858 1381.6896781354053,205.12087803674927 1440,218 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-1"></path>
         <path d="M 0,500 L 0,343 C 62.27924528301888,316.52985571587124 124.55849056603776,290.05971143174247 176,300 C 227.44150943396224,309.94028856825753 268.0452830188679,356.29100998890124 319,365 C 369.9547169811321,373.70899001109876 431.2603773584906,344.77624861265264 494,341 C 556.7396226415094,337.22375138734736 620.9132075471698,358.6039955604883 662,361 C 703.0867924528302,363.3960044395117 721.0867924528303,346.80776914539405 775,331 C 828.9132075471697,315.19223085460595 918.7396226415094,300.1649278579356 982,317 C 1045.2603773584906,333.8350721420644 1081.9547169811322,382.53251942286346 1123,388 C 1164.0452830188678,393.46748057713654 1209.4415094339622,355.70499445061046 1263,341 C 1316.5584905660378,326.29500554938954 1378.279245283019,334.6475027746948 1440,343 L 1440,500 L 0,500 Z" stroke="none" stroke-width="0" fill="url(#gradient)" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-2"></path>
     </svg>
-
     <h1 class="display-4 text-center mb-5 animate__animated animate__fadeIn text-white">Create a New Event</h1>
 
     <div class="row justify-content-center">
@@ -83,36 +82,75 @@
     </div>
 </div>
 
+<!-- Load Google Maps Extended Component Library -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+<gmpx-api-loader key="AIzaSyAUzwpFaLZAlA7uWWbUoHQzlrbNp_IqhHI" solution-channel="GMP_GE_placepicker_v2"></gmpx-api-loader>
+
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 
+<!-- JavaScript to Initialize Place Picker -->
+<script type="module">
+  import { PlacePicker } from 'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const locationInput = document.getElementById('location-input');
+    if (locationInput) {
+      const placePicker = document.createElement('gmpx-place-picker');
+      placePicker.setAttribute('placeholder', 'Enter an address...');
+
+      // Replace the original input with the place picker
+      locationInput.parentNode.replaceChild(placePicker, locationInput);
+
+      // Create a hidden input to store the selected place's formatted address
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'location';
+      hiddenInput.id = 'location-input-hidden';
+      placePicker.parentNode.appendChild(hiddenInput);
+
+      // Listen for place selection
+      placePicker.addEventListener('gmpx-placechange', () => {
+        const place = placePicker.value;
+        if (place && place.formattedAddress) {
+          hiddenInput.value = place.formattedAddress;
+          placePicker.value = place.formattedAddress; // Display the address in the picker
+        } else {
+          hiddenInput.value = '';
+        }
+      });
+
+      // Apply Bootstrap styling to the place picker
+      placePicker.classList.add('form-control');
+    }
+  });
+</script>
+
 <style>
     .background-images {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Behind content, but above SVG if both are used */
-    overflow: hidden;
-}
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
 
-/* Default Image Styling */
-.image {
-    position: absolute;
-    width: 130px; /* Default size for most images */
-    height: auto;
-    opacity: 1; /* Default opacity for most images */
-}
+    .image {
+        position: absolute;
+        width: 130px;
+        height: auto;
+        opacity: 1;
+    }
 
-/* Specific image positions */
-.image:nth-child(1) {
-    top: 0;
-    left: 0;
-    transform: none; /* Remove any transforms that might offset it */
-}
-    /* SVG Background Styling */
+    .image:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
     .background-svg {
         position: fixed;
         top: 0;
@@ -120,25 +158,36 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        object-fit: cover; /* Ensure SVG scales to cover the viewport */
-        transform: translateY(calc(100% - 675px)); /* Align SVG's y=500 with viewport bottom */
+        object-fit: cover;
+        transform: translateY(calc(100% - 675px));
         transform-origin: bottom;
     }
-    /* Card and Button Styling */
+
     .card-header {
         background: linear-gradient(90deg, #f8c954, #f878cd);
     }
+
     .btn-primary:hover {
         transform: translateY(-2px);
         transition: transform 0.2s ease-in-out;
     }
+
     .btn-secondary:hover {
         transform: translateY(-2px);
         transition: transform 0.2s ease-in-out;
     }
-    /* Ensure form readability */
+
     .card {
-        background-color: rgba(255, 255, 255, 0.75); /* Semi-transparent background for contrast */
+        background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Style for gmpx-place-picker to match Bootstrap */
+    gmpx-place-picker {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
     }
 </style>
 {% endblock content %}
