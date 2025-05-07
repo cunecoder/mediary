@@ -1,6 +1,22 @@
+# models.py
+# David Marin & Silas Curtis
+# Last Updated: 5/6/2025
+# Models for mediary app. 
+# Includes: User, Event, UserModelTests
+
+
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 from django.db import models
 from django.conf import settings
+from django.test import TestCase
+from django.contrib.auth import get_user_model
+
+class UserModelTests(TestCase):
+    def test_create_user(self):
+        User = get_user_model()
+        user = User.objects.create_user(email="test@example.com", password="secret")
+        self.assertEqual(user.email, "test@example.com")
+        self.assertTrue(user.check_password("secret"))
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)

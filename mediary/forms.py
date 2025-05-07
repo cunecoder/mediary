@@ -1,3 +1,9 @@
+# forms.py
+# David Marin & Silas Curtis
+# Last Updated: 5/6/2025
+# Forms for mediary app. 
+# Includes: EventForm
+
 from django import forms
 from .models import Event, User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
