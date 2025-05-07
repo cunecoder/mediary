@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-footer bg-transparent border-0 text-center">
                         <a href="{% url 'mediary:event_detail' event.id %}" class="btn btn-primary btn-sm">View Event</a>
-                        <form action="{% url 'mediary:event_delete' event.id %}" method="POST" style="display: inline;">
+                        <form action="{% url 'mediary:delete_event' event.id %}" method="POST" style="display: inline;">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

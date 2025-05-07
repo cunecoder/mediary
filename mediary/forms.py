@@ -1,6 +1,6 @@
 from django import forms
-from .models import Event, User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from .models import Event, User
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -32,11 +32,17 @@ class EventForm(forms.ModelForm):
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
         widgets = {
+            'username': forms.TextInput(attrs={
+                'placeholder': "Enter your username...",
+                'class': 'form-control',
+                'required': 'required',
+            }),
             'email': forms.EmailInput(attrs={
                 'placeholder': "Enter your email...",
                 'class': 'form-control',
+                'required': 'required',
             }),
         }
 
@@ -45,12 +51,40 @@ class CustomUserCreationForm(UserCreationForm):
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirm Password'})
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if not username:
+            raise forms.ValidationError("Username is required.")
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("This username is already taken.")
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise forms.ValidationError("Email is required.")
+        if User.objects.filter(email__iexact=email.lower()).exists():
+            raise forms.ValidationError("This email is already registered.")
+        return email.lower()
+
 class CustomAuthenticationForm(AuthenticationForm):
-    class Meta:
-        model = User
-        fields = ['username', 'password']  # 'username' is actually 'email' due to USERNAME_FIELD
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your email...',
+        'required': 'required'
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Enter your password...'
+    }))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Email'})
-        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
+        # Ensure the username field (which is email) is properly labeled
+        self.fields['username'].label = 'Email'
+
+    def clean_username(self):
+        email = self.cleaned_data.get('username')
+        if email:
+            return email.lower()  # Normalize email to lowercase
+        raise forms.ValidationError("Email is required.")
