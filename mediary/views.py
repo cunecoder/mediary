@@ -1,3 +1,11 @@
+# views.py
+# David Marin & Silas Curtis
+# Last Updated: 5/6/2025
+# Views for mediary app. 
+# Includes: home, event_create, delete_event, event_detail, 
+#           event_list, about_us, register, user_login, user_logout
+
+
 from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 from .forms import EventForm, CustomUserCreationForm, CustomAuthenticationForm
 from .models import Event
