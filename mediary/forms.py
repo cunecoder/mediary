@@ -9,6 +9,9 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Event, User
 
 class EventForm(forms.ModelForm):
+    """
+    Create a form for creating an event.
+    """
     class Meta:
         model = Event
         fields = ['title', 'location', 'description', 'time']
@@ -36,6 +39,9 @@ class EventForm(forms.ModelForm):
         }
 
 class CustomUserCreationForm(UserCreationForm):
+    """
+    Create a model form for creating a user.
+    """
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']

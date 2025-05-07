@@ -9,11 +9,13 @@
 {% load static %}
 
 {% block content %}
+
 <!-- Main image/logo, text, and navigation buttons -->
 <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
     <img src="{% static 'images/image8.png' %}" alt="Mediary Logo" class="logo mb-4" style="width: 190px; height: auto; margin-top: -80px;">
     <h1 class="display-1 text-black mb-4 fw-semibold text-center">Simplify the<br>Way you Plan</h1>
     <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">        
+        
         <!-- Navigation buttons -->
         <a href="{% url 'mediary:event_create' %}" class="btn btn-primary btn-lg">Create Event</a>
         <a href="{% url 'mediary:event_list' %}" class="btn btn-dark btn-lg">View All Events</a>
@@ -21,6 +23,7 @@
 </div>
 
 <style>
+    
     /* Gradient Background with Image */
     body {
         background: linear-gradient(90deg, rgba(248, 121, 205, 0.4), rgba(248, 201, 84, 0.4));
@@ -31,16 +34,19 @@
         min-height: 100vh;
         margin: 0;
     }
+    
     /* Logo Styling */
     .logo {
         position: relative;
         max-width: 350px;
         height: auto;
     }
+    
     /* Main Content Margin */
     .container {
         margin-top: 80px;
     }
+    
     /* Button Hover Effects */
     .btn-primary:hover {
         background-color: #005f99;
@@ -52,6 +58,7 @@
         transform: translateY(-2px);
         transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
     }
+    
     /* Responsive Button Layout */
     @media (max-width: 767px) {
         .d-flex {

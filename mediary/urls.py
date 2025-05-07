@@ -1,3 +1,8 @@
+# urls.py
+# David Marin & Silas Curtis
+# Last Updated: 5/6/2025
+# Urls for all pages in
+
 from django.urls import path
 from . import views
 

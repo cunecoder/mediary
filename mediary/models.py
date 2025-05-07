@@ -12,6 +12,9 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 
 class UserModelTests(TestCase):
+    """
+    Create a model for testing user creation.
+    """
     def test_create_user(self):
         User = get_user_model()
         user = User.objects.create_user(email="test@example.com", password="secret")
@@ -19,6 +22,9 @@ class UserModelTests(TestCase):
         self.assertTrue(user.check_password("secret"))
 
 class User(AbstractUser):
+    """
+    Create a model for users.
+    """
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True, blank=False, null=False)
     USERNAME_FIELD = 'email'

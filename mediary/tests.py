@@ -12,6 +12,9 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 class SimpleViewTests(TestCase):
+    """
+    Test a simple view to see if it passes.
+    """
     def test_home_page_loads(self):
         client = Client()
         response = client.get(reverse('mediary:home'))
