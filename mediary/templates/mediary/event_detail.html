@@ -17,16 +17,19 @@
                 <div class="card-body p-4">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item bg-transparent">
-                            <strong>Location:</strong> {{ event.location }}
+                            <strong class="me-2">Location:</strong> {{ event.location }}
                         </li>
                         <li class="list-group-item bg-transparent">
-                            <strong>Description:</strong> {{ event.description }}
+                            <strong class="me-2">Description:</strong> {{ event.description }}
                         </li>
                         <li class="list-group-item bg-transparent">
-                            <strong>Time:</strong> {{ event.time|date:"F j, Y, g:i a" }}
+                            <strong class="me-2">Time:</strong> {{ event.time|date:"F j, Y, g:i a" }}
                         </li>
                         <li class="list-group-item bg-transparent">
-                            <strong>Created:</strong> {{ event.created_at|date:"F j, Y, g:i a" }}
+                            <strong class="me-2">Created by:</strong> {{ event.user.email|default:"Anonymous" }}
+                        </li>
+                        <li class="list-group-item bg-transparent">
+                            <strong class="me-2">Created:</strong> {{ event.created_at|date:"F j, Y, g:i a" }}
                         </li>
                     </ul>
                     <!-- Map Container -->

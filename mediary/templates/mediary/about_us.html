@@ -1,10 +1,3 @@
-<!-- 
-    about_us.html
-    David Marin & Silas Curtis
-    Last Update: 5/6/2025
-    HTML for "About Us" page
--->
-
 {% extends "mediary/base.html" %}
 {% load static %}
 {% block content %}
@@ -16,6 +9,7 @@
 
 <style>
     body {
+        background-color: #000000; /* Light gray, change to any hex or named color */
         background-image: url("{% static 'images/mediaryfire.png' %}");
         background-size: 25%;
         background-repeat: no-repeat;
@@ -35,7 +29,7 @@
         line-height: 1;
     }
     .text-section p {
-        font-size: 1.499999999999999999999999999999999999em;
+        font-size: 1.5em;
         line-height: 1.5;
         justify-content: center;
         align-items: center;
